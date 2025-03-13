@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juliene S. Rodrigues</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 50px 0 0 0; /* Ajuste para não ficar colado na borda superior */
+            font-family: Arial, sans-serif;
+            background-image: url('textura.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 20%;
+            border: 5px solid #13e471;
+            margin-bottom: 20px;
+        }
+
+        .copiarPix,
+        .links a,
+        .meuContato {
+            margin-top: 20px;
+            width: 90%;/* Ajuste para ocupar 90% da largura da tela */
+            max-width: 300px;/* Mantém um limite máximo */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            background-color: #44414180;
+            padding: 20px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .copiarPix:hover,
+        .links a:hover,
+        .meuContato:hover {
+            background-color: #87de8db3;
+        }
+
+        .links a i {
+            margin-left: 100px;
+        }
+
+        /* Media queries para telas menores */
+        @media (max-width: 600px) {
+            .profile-pic {
+                width: 150px;
+                height: 150px;
+            }
+
+            .copiarPix,
+            .links a,
+            .meuContato {
+                font-size: 16px;
+                padding: 10px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <img src="juliene.jpg" alt="Minha Foto" class="profile-pic">
+    <h1>Juliene S. Rodrigues</h1>
+    <h1>Nutricionista</h1>
+    <p>Conselheira Fiscal Sindnutri-RO | Especialista em Emagrecimento | Nutrição Clínica | Nutrição Esportiva |
+        Reeducação Alimentar </p>
+    <p>Porto Velho-RO</p>
+
+    <div class="links">
+        <a href="tel:69993596582 class=" meuContato">
+            Meu contato
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/5569993596582" target="_blank">
+            WhatsApp
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://instagram.com/nutri.juliene" target="_blank">
+            Instagram
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://nutrijuliene.com.br/bio" target="_blank">
+            Site
+            <i class="fas fa-globe"></i>
+        </a>
+
+    </div>
+</body>
+
+</html>
