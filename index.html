@@ -12,9 +12,16 @@
         /* CONFIGURAÇÕES GERAIS */
         body {
             margin: 0;
-            padding: 40px 0;
+            padding: 40px 0 20px 0;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #326e5f;
+            
+            /* CONFIGURAÇÃO DA TEXTURA */
+            background-image: linear-gradient(rgba(50, 110, 95, 0.8), rgba(50, 110, 95, 0.8)), url('textura.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            
             color: #ffffff;
             text-align: center;
             min-height: 100vh;
@@ -23,7 +30,7 @@
             align-items: center;
         }
 
-        /* ANIMAÇÃO DE ENTRADA DA FOTO */
+        /* ANIMAÇÃO DE ENTRADA */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -36,66 +43,55 @@
             border: 4px solid #13e471;
             margin-bottom: 20px;
             object-fit: cover;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             animation: fadeInDown 1s ease-out;
         }
 
-        h1 { font-size: 1.6rem; margin: 10px 0 5px 0; padding: 0 10px; }
-        .subtitle { font-weight: bold; font-size: 1.1rem; color: #13e471; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-        .description { font-size: 0.95rem; max-width: 85%; line-height: 1.5; margin-bottom: 30px; opacity: 0.9; }
+        h1 { font-size: 1.6rem; margin: 10px 0 5px 0; text-shadow: 1px 1px 4px rgba(0,0,0,0.3); }
+        .subtitle { font-weight: bold; font-size: 1.1rem; color: #13e471; margin-bottom: 15px; text-transform: uppercase; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        .description { font-size: 0.95rem; max-width: 85%; line-height: 1.5; margin-bottom: 30px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; }
 
-        .links {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        /* ESTILO DOS BOTÕES */
+        /* BOTÕES */
+        .links { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 40px; }
         .links a, .btn-pix {
-            width: 85%;
-            max-width: 380px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-            font-weight: 500;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 16px 25px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 85%; max-width: 380px;
+            display: flex; align-items: center; justify-content: space-between;
+            text-decoration: none; color: white; font-size: 18px; font-weight: 500;
+            background-color: rgba(0, 0, 0, 0.4); /* Fundo um pouco mais escuro para destacar da textura */
+            padding: 16px 25px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(5px); /* Efeito de vidro fosco */
             font-family: inherit;
         }
 
-        /* EFEITO HOVER */
         .links a:hover, .btn-pix:hover {
-            background-color: #13e471;
-            color: #1a4a40;
+            background-color: #13e471; color: #1a4a40;
             transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-            border-color: transparent;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
         }
 
-        .links a:hover i, .btn-pix:hover i {
-            transform: rotate(15deg) scale(1.3);
+        .btn-pix.success { background-color: #ffffff !important; color: #326e5f !important; }
+
+        /* RODAPÉ DE HORÁRIOS */
+        .footer-horarios {
+            width: 85%;
+            max-width: 380px;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: auto;
+            border-top: 2px solid #13e471;
+            margin-bottom: 20px;
         }
 
-        /* FEEDBACK PIX COPIADO */
-        .btn-pix.success {
-            background-color: #ffffff !important;
-            color: #326e5f !important;
-            transform: scale(0.98);
-        }
-
-        .links i { font-size: 22px; transition: transform 0.3s ease; }
+        .footer-horarios h3 { font-size: 1rem; margin-bottom: 15px; color: #13e471; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .horario-item { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 5px; }
+        .horario-item:last-child { border-bottom: none; }
+        .dia { font-weight: bold; }
 
         @media (max-width: 380px) {
-            .links a, .btn-pix { font-size: 16px; padding: 14px 20px; }
+            .links a, .btn-pix { font-size: 16px; }
             .profile-pic { width: 150px; height: 150px; }
         }
     </style>
@@ -120,73 +116,35 @@
             <i class="fas fa-copy"></i>
         </button>
 
-        <a href="tel:69993596582">
-            <span>Meu contato</span>
-            <i class="fas fa-phone"></i>
-        </a>
-        
-        <a href="https://api.whatsapp.com/send?phone=5569993596582&text=Olá" target="_blank">
-            <span>WhatsApp</span>
-            <i class="fab fa-whatsapp"></i>
-        </a>
-
-        <a href="https://instagram.com/nutri.juliene" target="_blank">
-            <span>Instagram</span>
-            <i class="fab fa-instagram"></i>
-        </a>
-
-        <a href="https://t.me/nutrijuliene" target="_blank">
-            <span>Telegram</span>
-            <i class="fab fa-telegram"></i>
-        </a>
-
-        <a href="https://goo.gl/maps/exemplo" target="_blank">
-            <span>Clínica TOPSI</span>
-            <i class="fas fa-map-marker-alt"></i>
-        </a>
+        <a href="tel:69993596582"><span>Meu contato</span><i class="fas fa-phone"></i></a>
+        <a href="https://api.whatsapp.com/send?phone=5569993596582&text=Olá" target="_blank"><span>WhatsApp</span><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/nutri.juliene" target="_blank"><span>Instagram</span><i class="fab fa-instagram"></i></a>
+        <a href="https://t.me/nutrijuliene" target="_blank"><span>Telegram</span><i class="fab fa-telegram"></i></a>
     </div>
+
+    <footer class="footer-horarios">
+        <h3><i class="far fa-clock"></i> Horário de Atendimento</h3>
+        <div class="horario-item"><span class="dia">Segunda - Sexta</span><span class="hora">08:00 - 18:00</span></div>
+        <div class="horario-item"><span class="dia">Sábado</span><span class="hora">08:00 - 12:00</span></div>
+        <div class="horario-item"><span class="dia">Domingo</span><span class="hora">Fechado</span></div>
+    </footer>
 
     <script>
         function copyPix() {
-            // --- INSIRA SUA CHAVE PIX AQUI ---
-            const chavePix = "SEU_PIX_AQUI"; 
-            
+            const chavePix = "SEU_PIX_AQUI"; // Substitua pelo seu PIX real
             navigator.clipboard.writeText(chavePix).then(() => {
                 const btn = document.getElementById('btnPix');
                 const text = document.getElementById('pixText');
-                
-                // 1. Mudar texto e cor do botão
                 text.innerText = "Copiado com sucesso! ✅";
                 btn.classList.add('success');
 
-                // 2. DISPARAR CONFETES
-                var duracao = 3 * 1000;
-                var fim = Date.now() + duracao;
-
-                (function frame() {
-                    // Confetes da esquerda
-                    confetti({
-                        particleCount: 3,
-                        angle: 60,
-                        spread: 55,
-                        origin: { x: 0 },
-                        colors: ['#13e471', '#ffffff', '#326e5f']
-                    });
-                    // Confetes da direita
-                    confetti({
-                        particleCount: 3,
-                        angle: 120,
-                        spread: 55,
-                        origin: { x: 1 },
-                        colors: ['#13e471', '#ffffff', '#326e5f']
-                    });
-
-                    if (Date.now() < fim) {
-                        requestAnimationFrame(frame);
-                    }
-                }());
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#13e471', '#ffffff', '#326e5f']
+                });
                 
-                // Retornar ao normal após 3 segundos
                 setTimeout(() => {
                     text.innerText = "Copiar Chave PIX";
                     btn.classList.remove('success');
