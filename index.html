@@ -9,105 +9,138 @@
     <style>
         body {
             margin: 0;
-            padding: 50px 0 0 0; /* Ajuste para não ficar colado na borda superior */
-            font-family: Arial, sans-serif;
+            padding: 20px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #326e5f;
-            background-size: cover;
-            background-position: center;
             color: #ffffff;
             text-align: center;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
         }
 
         .profile-pic {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             border-radius: 20%;
-            border: 5px solid #13e471;
-            margin-bottom: 20px;
+            border: 4px solid #13e471;
+            margin-bottom: 15px;
+            object-fit: cover;
         }
 
-        .copiarPix,
-        .links a,
-        .meuContato {
-            margin-top: 20px;
-            width: 90%;/* Ajuste para ocupar 90% da largura da tela */
-            max-width: 300px;/* Mantém um limite máximo */
+        h1 { font-size: 1.5rem; margin: 10px 0 5px 0; }
+        .subtitle { font-weight: bold; font-size: 1.1rem; color: #13e471; margin-bottom: 15px; }
+        .description { font-size: 0.9rem; max-width: 85%; line-height: 1.4; margin-bottom: 25px; }
+
+        .links {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Estilo base para Links e Botão PIX */
+        .links a, .btn-pix {
+            width: 85%;
+            max-width: 350px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             text-decoration: none;
             color: white;
             font-size: 18px;
-            background-color: #5f595980;
-            padding: 20px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            background-color: rgba(95, 89, 89, 0.5);
+            padding: 15px 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            font-family: inherit;
         }
 
-        .copiarPix:hover,
-        .links a:hover,
-        .meuContato:hover {
-            background-color: #87de8db3;
+        .links a:hover, .btn-pix:hover {
+            background-color: #13e471;
+            transform: translateY(-3px);
         }
 
-        .links a i {
-            margin-left: 100px;
+        /* Estilo especial quando o PIX for copiado */
+        .btn-pix.success {
+            background-color: #13e471 !important;
         }
 
-        /* Media queries para telas menores */
-        @media (max-width: 600px) {
-            .profile-pic {
-                width: 150px;
-                height: 150px;
-            }
+        .links i { font-size: 20px; }
 
-            .copiarPix,
-            .links a,
-            .meuContato {
-                font-size: 16px;
-                padding: 10px 16px;
-            }
+        @media (max-width: 350px) {
+            .links a, .btn-pix { font-size: 16px; padding: 12px 15px; }
         }
     </style>
 </head>
 
 <body>
-    <img src="juliene.jpg" alt="Minha Foto" class="profile-pic">
+
+    <img src="juliene.jpg" alt="Drª Juliene S. Rodrigues" class="profile-pic">
+    
     <h1>Drª Juliene S. Rodrigues</h1>
-    <h1>Nutricionista</h1>
-    <p>Conselheira Fiscal Sindnutri-RO | Especialista em Emagrecimento | Nutrição Clínica | Nutrição Esportiva |
-        Reeducação Alimentar </p>
-    <p>Porto Velho-RO</p>
+    <div class="subtitle">Nutricionista</div>
+
+    <p class="description">
+        Conselheira Fiscal Sindnutri-RO | Especialista em Emagrecimento <br> 
+        Nutrição Clínica | Nutrição Esportiva | Reeducação Alimentar <br>
+        <strong>Porto Velho - RO</strong>
+    </p>
 
     <div class="links">
-        <a href="tel:69993596582" class="meuContato">
-            Meu contato
+        <button class="btn-pix" id="btnPix" onclick="copyPix()">
+            <span id="pixText">Copiar Chave PIX</span>
+            <i class="fas fa-copy"></i>
+        </button>
+
+        <a href="tel:69993596582">
+            <span>Meu contato</span>
             <i class="fas fa-phone"></i>
         </a>
-        <a href="https://wa.me/5569993596582" target="_blank">
-            WhatsApp
+        
+        <a href="https://api.whatsapp.com/send?phone=5569993596582&text=Olá" target="_blank">
+            <span>WhatsApp</span>
             <i class="fab fa-whatsapp"></i>
         </a>
-        <a href="https://t.me/nutrijuliene" target="_blank">
-            Telegram
-            <i class="fab fa-telegram"></i>
-        </a>
+
         <a href="https://instagram.com/nutri.juliene" target="_blank">
-            Instagram
+            <span>Instagram</span>
             <i class="fab fa-instagram"></i>
         </a>
-        <a href="https://maps.app.goo.gl/fx93SzpywbVCChtX9" target="_blank">
-            Clinica TOPSI
+
+        <a href="https://goo.gl/maps/exemplo" target="_blank">
+            <span>Clínica TOPSI</span>
             <i class="fas fa-map-marker-alt"></i>
         </a>
     </div>
+
+    <script>
+        function copyPix() {
+            // COLOQUE SUA CHAVE PIX ABAIXO
+            const chavePix = "69993596582"; 
+            
+            // Copia o texto para a área de transferência
+            navigator.clipboard.writeText(chavePix).then(() => {
+                const btn = document.getElementById('btnPix');
+                const text = document.getElementById('pixText');
+                
+                // Muda o visual para "Sucesso"
+                text.innerText = "Copiado com sucesso!";
+                btn.classList.add('success');
+                
+                // Volta ao normal depois de 2 segundos
+                setTimeout(() => {
+                    text.innerText = "Copiar Chave PIX";
+                    btn.classList.remove('success');
+                }, 2000);
+            });
+        }
+    </script>
+
 </body>
 
 </html>
