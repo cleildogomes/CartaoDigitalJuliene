@@ -6,81 +6,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drª Juliene S. Rodrigues</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 20px 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #326e5f;
-            color: #ffffff;
-            text-align: center;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+	<style>
+		body {
+			margin: 0;
+			padding: 20px 0;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background-color: #326e5f;
+			color: #ffffff;
+			text-align: center;
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
 
-        .profile-pic {
-            width: 180px;
-            height: 180px;
-            border-radius: 20%;
-            border: 4px solid #13e471;
-            margin-bottom: 15px;
-            object-fit: cover;
-        }
+		.profile-pic {
+			width: 180px;
+			height: 180px;
+			border-radius: 20%;
+			border: 4px solid #13e471;
+			margin-bottom: 15px;
+			object-fit: cover;
+			/* Animação suave na foto ao carregar */
+			animation: fadeIn 1.5s ease-in-out;
+		}
 
-        h1 { font-size: 1.5rem; margin: 10px 0 5px 0; }
-        .subtitle { font-weight: bold; font-size: 1.1rem; color: #13e471; margin-bottom: 15px; }
-        .description { font-size: 0.9rem; max-width: 85%; line-height: 1.4; margin-bottom: 25px; }
+		@keyframes fadeIn {
+			from { opacity: 0; transform: translateY(-20px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
 
-        .links {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
+		h1 { font-size: 1.5rem; margin: 10px 0 5px 0; }
+		.subtitle { font-weight: bold; font-size: 1.1rem; color: #13e471; margin-bottom: 15px; }
+		.description { font-size: 0.9rem; max-width: 85%; line-height: 1.4; margin-bottom: 25px; }
 
-        /* Estilo base para Links e Botão PIX */
-        .links a, .btn-pix {
-            width: 85%;
-            max-width: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-            background-color: rgba(95, 89, 89, 0.5);
-            padding: 15px 25px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-        }
+		.links {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 15px;
+		}
 
-        .links a:hover, .btn-pix:hover {
-            background-color: #13e471;
-            transform: translateY(-3px);
-        }
+		/* ESTILO DOS BOTÕES COM ANIMAÇÃO */
+		.links a, .btn-pix {
+			width: 85%;
+			max-width: 350px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			text-decoration: none;
+			color: white;
+			font-size: 18px;
+			background-color: rgba(95, 89, 89, 0.5);
+			padding: 15px 25px;
+			border-radius: 8px;
+			border: none;
+			cursor: pointer;
+			font-family: inherit;
+			
+			/* Transição: Define que qualquer mudança levará 0.3 segundos */
+			transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+			position: relative;
+			overflow: hidden;
+		}
 
-        /* Estilo especial quando o PIX for copiado */
-        .btn-pix.success {
-            background-color: #13e471 !important;
-        }
+		/* EFEITO AO PASSAR O MOUSE (HOVER) */
+		.links a:hover, .btn-pix:hover {
+			background-color: #13e471;
+			color: #1a4a40; /* Muda a cor do texto para contraste */
+			transform: scale(1.05); /* Aumenta 5% de tamanho */
+			box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* Sombra mais forte */
+		}
 
-        .links i { font-size: 20px; }
+		/* Ícone girando levemente no hover */
+		.links a:hover i, .btn-pix:hover i {
+			transform: rotate(15deg) scale(1.2);
+			transition: transform 0.3s ease;
+		}
 
-        @media (max-width: 350px) {
-            .links a, .btn-pix { font-size: 16px; padding: 12px 15px; }
-        }
-    </style>
+		/* Estilo especial para o PIX quando copiado */
+		.btn-pix.success {
+			background-color: #ffffff !important;
+			color: #326e5f !important;
+			transform: scale(0.95); /* Efeito de clique */
+		}
+
+		@media (max-width: 350px) {
+			.links a, .btn-pix { font-size: 16px; padding: 12px 15px; }
+		}
+	</style>
 </head>
 
 <body>
 
-    <img src="juliene.jepg" alt="Drª Juliene S. Rodrigues" class="profile-pic">
+    <img src="juliene.jpeg" alt="Drª Juliene S. Rodrigues" class="profile-pic">
     
     <h1>Drª Juliene S. Rodrigues</h1>
     <div class="subtitle">Nutricionista</div>
@@ -144,4 +164,3 @@
 </body>
 
 </html>
-
