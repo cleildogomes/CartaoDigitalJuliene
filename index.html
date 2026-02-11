@@ -9,40 +9,92 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <style>
-    /* CONFIGURAÇÕES GERAIS */
-    body {
-        margin: 0;
-        padding: 40px 0 20px 0;
-        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        
-        /* CORREÇÃO DA TEXTURA */
-        /* 1. Adicionamos uma cor sólida de backup caso a imagem falhe */
-        background-color: #326e5f; 
-        
-        /* 2. O linear-gradient serve como uma "camada" para escurecer a foto e dar leitura ao texto */
-        background-image: linear-gradient(rgba(50, 110, 95, 0.7), rgba(50, 110, 95, 0.7)), url('textura.jpg'); 
-        
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed; /* Efeito Parallax: a imagem não corre com o scroll */
-        background-repeat: no-repeat;
-        
-        color: #ffffff;
-        text-align: center;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+        /* CONFIGURAÇÕES GERAIS */
+        body {
+            margin: 0;
+            padding: 40px 0 20px 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            
+            /* CONFIGURAÇÃO DA TEXTURA */
+            background-image: linear-gradient(rgba(50, 110, 95, 0.8), rgba(50, 110, 95, 0.8)), url('textura.');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            
+            color: #ffffff;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    /* O restante do seu CSS está correto, mas certifique-se de que os botões tenham o backdrop-filter */
-    .links a, .btn-pix {
-        backdrop-filter: blur(8px); /* Aumentei o desfoque para dar mais destaque sobre a textura */
-        -webkit-backdrop-filter: blur(8px); /* Suporte para Safari */
-        background-color: rgba(0, 0, 0, 0.3);
-        /* ... outros estilos ... */
-    }
-</style>
+        /* ANIMAÇÃO DE ENTRADA */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 20%;
+            border: 4px solid #13e471;
+            margin-bottom: 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        h1 { font-size: 1.6rem; margin: 10px 0 5px 0; text-shadow: 1px 1px 4px rgba(0,0,0,0.3); }
+        .subtitle { font-weight: bold; font-size: 1.1rem; color: #13e471; margin-bottom: 15px; text-transform: uppercase; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        .description { font-size: 0.95rem; max-width: 85%; line-height: 1.5; margin-bottom: 30px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; }
+
+        /* BOTÕES */
+        .links { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 40px; }
+        .links a, .btn-pix {
+            width: 85%; max-width: 380px;
+            display: flex; align-items: center; justify-content: space-between;
+            text-decoration: none; color: white; font-size: 18px; font-weight: 500;
+            background-color: rgba(0, 0, 0, 0.4); /* Fundo um pouco mais escuro para destacar da textura */
+            padding: 16px 25px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(5px); /* Efeito de vidro fosco */
+            font-family: inherit;
+        }
+
+        .links a:hover, .btn-pix:hover {
+            background-color: #13e471; color: #1a4a40;
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .btn-pix.success { background-color: #ffffff !important; color: #326e5f !important; }
+
+        /* RODAPÉ DE HORÁRIOS */
+        .footer-horarios {
+            width: 85%;
+            max-width: 380px;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: auto;
+            border-top: 2px solid #13e471;
+            margin-bottom: 20px;
+        }
+
+        .footer-horarios h3 { font-size: 1rem; margin-bottom: 15px; color: #13e471; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .horario-item { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 5px; }
+        .horario-item:last-child { border-bottom: none; }
+        .dia { font-weight: bold; }
+
+        @media (max-width: 380px) {
+            .links a, .btn-pix { font-size: 16px; }
+            .profile-pic { width: 150px; height: 150px; }
+        }
+    </style>
 </head>
 
 <body>
@@ -53,9 +105,9 @@
     <div class="subtitle">Nutricionista</div>
 
     <p class="description">
-        Diabetes✅ Emagrecimento✅ Saúde✅ Controle Glicêmico✅ Perda de peso sem dietas extremas✅ <br> 
-        
-        <strong>📍 Porto Velho - RO | 👉Agende sua consulta👇 </strong>
+        Conselheira Fiscal Sindnutri-RO | Especialista em Emagrecimento <br> 
+        Nutrição Clínica | Nutrição Esportiva | Reeducação Alimentar <br>
+        <strong>📍 Porto Velho - RO</strong>
     </p>
 
     <div class="links">
