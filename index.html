@@ -4,98 +4,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drª Juliene S. Rodrigues</title>
+    <title>Drª Juliene S. Rodrigues | Nutricionista</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-	<style>
-		body {
-			margin: 0;
-			padding: 20px 0;
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-			background-color: #326e5f;
-			color: #ffffff;
-			text-align: center;
-			min-height: 100vh;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        /* CONFIGURAÇÕES GERAIS */
+        body {
+            margin: 0;
+            padding: 40px 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #326e5f;
+            color: #ffffff;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-		.profile-pic {
-			width: 180px;
-			height: 180px;
-			border-radius: 20%;
-			border: 4px solid #13e471;
-			margin-bottom: 15px;
-			object-fit: cover;
-			/* Animação suave na foto ao carregar */
-			animation: fadeIn 1.5s ease-in-out;
-		}
+        /* ANIMAÇÃO DE ENTRADA DA FOTO */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-		@keyframes fadeIn {
-			from { opacity: 0; transform: translateY(-20px); }
-			to { opacity: 1; transform: translateY(0); }
-		}
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 20%;
+            border: 4px solid #13e471;
+            margin-bottom: 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            animation: fadeInDown 1s ease-out;
+        }
 
-		h1 { font-size: 1.5rem; margin: 10px 0 5px 0; }
-		.subtitle { font-weight: bold; font-size: 1.1rem; color: #13e471; margin-bottom: 15px; }
-		.description { font-size: 0.9rem; max-width: 85%; line-height: 1.4; margin-bottom: 25px; }
+        h1 { font-size: 1.6rem; margin: 10px 0 5px 0; padding: 0 10px; }
+        .subtitle { font-weight: bold; font-size: 1.1rem; color: #13e471; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .description { font-size: 0.95rem; max-width: 85%; line-height: 1.5; margin-bottom: 30px; opacity: 0.9; }
 
-		.links {
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			gap: 15px;
-		}
+        .links {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
 
-		/* ESTILO DOS BOTÕES COM ANIMAÇÃO */
-		.links a, .btn-pix {
-			width: 85%;
-			max-width: 350px;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			text-decoration: none;
-			color: white;
-			font-size: 18px;
-			background-color: rgba(95, 89, 89, 0.5);
-			padding: 15px 25px;
-			border-radius: 8px;
-			border: none;
-			cursor: pointer;
-			font-family: inherit;
-			
-			/* Transição: Define que qualquer mudança levará 0.3 segundos */
-			transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-			position: relative;
-			overflow: hidden;
-		}
+        /* ESTILO DOS BOTÕES */
+        .links a, .btn-pix {
+            width: 85%;
+            max-width: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 16px 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: inherit;
+        }
 
-		/* EFEITO AO PASSAR O MOUSE (HOVER) */
-		.links a:hover, .btn-pix:hover {
-			background-color: #13e471;
-			color: #1a4a40; /* Muda a cor do texto para contraste */
-			transform: scale(1.05); /* Aumenta 5% de tamanho */
-			box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* Sombra mais forte */
-		}
+        /* EFEITO HOVER */
+        .links a:hover, .btn-pix:hover {
+            background-color: #13e471;
+            color: #1a4a40;
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border-color: transparent;
+        }
 
-		/* Ícone girando levemente no hover */
-		.links a:hover i, .btn-pix:hover i {
-			transform: rotate(15deg) scale(1.2);
-			transition: transform 0.3s ease;
-		}
+        .links a:hover i, .btn-pix:hover i {
+            transform: rotate(15deg) scale(1.3);
+        }
 
-		/* Estilo especial para o PIX quando copiado */
-		.btn-pix.success {
-			background-color: #ffffff !important;
-			color: #326e5f !important;
-			transform: scale(0.95); /* Efeito de clique */
-		}
+        /* FEEDBACK PIX COPIADO */
+        .btn-pix.success {
+            background-color: #ffffff !important;
+            color: #326e5f !important;
+            transform: scale(0.98);
+        }
 
-		@media (max-width: 350px) {
-			.links a, .btn-pix { font-size: 16px; padding: 12px 15px; }
-		}
-	</style>
+        .links i { font-size: 22px; transition: transform 0.3s ease; }
+
+        @media (max-width: 380px) {
+            .links a, .btn-pix { font-size: 16px; padding: 14px 20px; }
+            .profile-pic { width: 150px; height: 150px; }
+        }
+    </style>
 </head>
 
 <body>
@@ -108,7 +111,7 @@
     <p class="description">
         Conselheira Fiscal Sindnutri-RO | Especialista em Emagrecimento <br> 
         Nutrição Clínica | Nutrição Esportiva | Reeducação Alimentar <br>
-        <strong>Porto Velho - RO</strong>
+        <strong>📍 Porto Velho - RO</strong>
     </p>
 
     <div class="links">
@@ -132,6 +135,11 @@
             <i class="fab fa-instagram"></i>
         </a>
 
+        <a href="https://t.me/nutrijuliene" target="_blank">
+            <span>Telegram</span>
+            <i class="fab fa-telegram"></i>
+        </a>
+
         <a href="https://goo.gl/maps/exemplo" target="_blank">
             <span>Clínica TOPSI</span>
             <i class="fas fa-map-marker-alt"></i>
@@ -140,27 +148,52 @@
 
     <script>
         function copyPix() {
-            // COLOQUE SUA CHAVE PIX ABAIXO
-            const chavePix = "69993596582"; 
+            // --- INSIRA SUA CHAVE PIX AQUI ---
+            const chavePix = "SEU_PIX_AQUI"; 
             
-            // Copia o texto para a área de transferência
             navigator.clipboard.writeText(chavePix).then(() => {
                 const btn = document.getElementById('btnPix');
                 const text = document.getElementById('pixText');
                 
-                // Muda o visual para "Sucesso"
-                text.innerText = "Copiado com sucesso!";
+                // 1. Mudar texto e cor do botão
+                text.innerText = "Copiado com sucesso! ✅";
                 btn.classList.add('success');
+
+                // 2. DISPARAR CONFETES
+                var duracao = 3 * 1000;
+                var fim = Date.now() + duracao;
+
+                (function frame() {
+                    // Confetes da esquerda
+                    confetti({
+                        particleCount: 3,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 },
+                        colors: ['#13e471', '#ffffff', '#326e5f']
+                    });
+                    // Confetes da direita
+                    confetti({
+                        particleCount: 3,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 },
+                        colors: ['#13e471', '#ffffff', '#326e5f']
+                    });
+
+                    if (Date.now() < fim) {
+                        requestAnimationFrame(frame);
+                    }
+                }());
                 
-                // Volta ao normal depois de 2 segundos
+                // Retornar ao normal após 3 segundos
                 setTimeout(() => {
                     text.innerText = "Copiar Chave PIX";
                     btn.classList.remove('success');
-                }, 2000);
+                }, 3000);
             });
         }
     </script>
 
 </body>
-
 </html>
